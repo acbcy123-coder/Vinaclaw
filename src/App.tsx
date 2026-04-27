@@ -25,7 +25,7 @@ const translations = {
   en: {
     nav: {
       features: "Features",
-      skills: "Skills",
+      skills: "Interaction",
       faq: "FAQ",
       download: "Download Now"
     },
@@ -71,13 +71,13 @@ const translations = {
       caption: "Interactive Personalization",
       title: "Mascot Design &",
       titleAccent: "Interaction.",
-      desc: "Every skill comes with a unique visual presence. We design interactive mascots that bring your AI capabilities to life with expressive animations.",
-      s1: "VISUAL SYNTHESIS",
+      desc: "Every skill comes with a unique visual presence. We design interactive mascots that bring your AI capabilities to life with expressive animations and motion logic.",
+      s1: "MOTION SYNTHESIS",
       s2: "EMOTIONAL RENDERING",
       s3: "DYNAMIC RESPONSE",
       explore: "CUSTOM CLIENT SOLUTIONS",
       deploy: "Request Custom Design",
-      skillInjector: "DESIGN_LAB_V2"
+      skillInjector: "MOTION_LAB_V2"
     },
     faq: {
       caption: "The Ecosystem",
@@ -110,7 +110,7 @@ const translations = {
   zh: {
     nav: {
       features: "功能特性",
-      skills: "技能商店",
+      skills: "形象与互动",
       faq: "常见问题",
       download: "立即下载"
     },
@@ -156,13 +156,13 @@ const translations = {
       caption: "交互式个性化",
       title: "形象设计与",
       titleAccent: "深度互动。",
-      desc: "每一个技能都配有独特的视觉呈现。我们设计可互动的智能体形象，通过丰富的表情动画让您的 AI 功能焕发生机。",
-      s1: "视觉合成",
+      desc: "每一个技能都配有独特的视觉呈现。我们设计可互动的智能体形象，通过丰富的表情动画与动效逻辑让您的 AI 功能焕发生机。",
+      s1: "动效合成",
       s2: "情感渲染",
       s3: "动态响应",
       explore: "客户定制方案",
       deploy: "申请定制设计",
-      skillInjector: "设计实验室_V2"
+      skillInjector: "动效实验室_V2"
     },
     faq: {
       caption: "生态系统",
@@ -291,26 +291,28 @@ export default function App() {
         <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div>
             <span className="text-caption">{t.hero.caption}</span>
-            <h1 className="heading-1 mb-8">
+            <h1 className="heading-1 mb-10">
               {t.hero.title} <br/>
-              <span className="gradient-text">{t.hero.titleAccent}</span>
+              <span className="inline-block px-4 py-2 mt-2 bg-gradient-to-r from-cyan-400 to-fuchsia-500 rounded-2xl text-white">
+                {t.hero.titleAccent}
+              </span>
             </h1>
-            <p className="text-xl text-slate-400 mb-10 max-w-lg leading-relaxed">
+            <p className="text-xl text-slate-400 mb-12 max-w-lg leading-relaxed">
               {t.hero.desc}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-5">
               <button className="flex items-center justify-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-all shadow-2xl shadow-white/10">
                 <Monitor className="w-6 h-6" />
                 <span>{t.hero.winDownload}</span>
               </button>
               <div className="relative group">
-                <button className="flex items-center justify-center gap-3 bg-slate-900 border border-slate-800 text-slate-500 px-10 py-5 rounded-2xl font-bold text-lg cursor-not-allowed w-full">
+                <button className="flex items-center justify-center gap-3 bg-slate-900/50 border border-slate-800 text-slate-500 px-10 py-5 rounded-2xl font-bold text-lg cursor-not-allowed w-full">
                   <Apple className="w-6 h-6" />
                   <span>{t.hero.macDownload}</span>
                 </button>
               </div>
             </div>
-            <div className="mt-10 flex items-center gap-6 text-xs font-bold uppercase tracking-widest text-slate-500">
+            <div className="mt-12 flex items-center gap-6 text-xs font-bold uppercase tracking-widest text-slate-500">
               <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-400" /> {t.hero.version}</span>
               <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-400" /> {t.hero.engine}</span>
             </div>
@@ -480,83 +482,70 @@ export default function App() {
               {t.skills.desc}
             </p>
             
-            <div className="space-y-8">
-              {[
-                { name: t.skills.s1, level: "98%", color: "cyan" },
-                { name: t.skills.s2, level: "92%", color: "fuchsia" },
-                { name: t.skills.s3, level: "85%", color: "indigo" }
-              ].map((skill, i) => (
-                <div key={i}>
-                  <div className="flex justify-between mb-3">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">{skill.name}</span>
-                    <span className="text-xs font-bold text-slate-500">{skill.level}</span>
-                  </div>
-                  <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: skill.level }}
-                      transition={{ duration: 1.5, delay: i * 0.2 }}
-                      className={`h-full ${
-                        skill.color === 'cyan' ? 'bg-cyan-500' : 
-                        skill.color === 'fuchsia' ? 'bg-fuchsia-500' : 'bg-indigo-500'
-                      }`}
-                    ></motion.div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <button className="mt-12 flex items-center gap-3 text-cyan-400 font-black uppercase text-[11px] tracking-[0.3em] hover:gap-6 transition-all">
+            <button className="flex items-center gap-3 text-cyan-400 font-black uppercase text-[11px] tracking-[0.3em] hover:gap-6 transition-all">
               <span>{t.skills.explore}</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
           
-          <div className="flex justify-center">
-            <div className="relative group w-full max-w-md">
-              <div className="absolute inset-0 bg-cyan-500/10 blur-[100px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
-              <div className="relative bg-slate-900/80 backdrop-blur-3xl p-12 rounded-[48px] border border-white/10 w-full shadow-2xl overflow-hidden">
-                <div className="absolute top-0 right-0 p-8">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
-                </div>
-                
-                <div className="flex items-center justify-between mb-12">
-                  <div>
-                    <h4 className="font-black tracking-wider uppercase text-[10px] text-slate-500 mb-1">{t.skills.skillInjector}</h4>
-                    <div className="text-xl font-bold text-white tracking-tight">Active Design</div>
+          <div className="flex justify-center w-full">
+            <div className="grid grid-cols-2 gap-6 w-full max-w-lg">
+              {[
+                { 
+                  label: "Orbital Focus", 
+                  anim: { rotate: 360 }, 
+                  transition: { duration: 10, repeat: Infinity, ease: "linear" },
+                  color: "bg-cyan-500",
+                  id: "motion-1"
+                },
+                { 
+                  label: "Pulse Response", 
+                  anim: { scale: [1, 1.2, 1] }, 
+                  transition: { duration: 2, repeat: Infinity },
+                  color: "bg-fuchsia-500",
+                  id: "motion-2"
+                },
+                { 
+                  label: "Vortex logic", 
+                  anim: { skew: [0, 10, -10, 0] }, 
+                  transition: { duration: 3, repeat: Infinity },
+                  color: "bg-indigo-500",
+                  id: "motion-3"
+                },
+                { 
+                  label: "Float Synth", 
+                  anim: { y: [0, -15, 0] }, 
+                  transition: { duration: 4, repeat: Infinity },
+                  color: "bg-white",
+                  id: "motion-4"
+                }
+              ].map((item, i) => (
+                <div key={i} id={item.id} className="relative group aspect-square bg-slate-900 border border-white/10 rounded-[32px] p-6 flex flex-col justify-between overflow-hidden hover:border-white/20 transition-all">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] font-black tracking-widest text-slate-600 uppercase">{item.label}</span>
+                    <Sparkles className="w-3 h-3 text-slate-700" />
                   </div>
-                  <div className="px-4 py-1.5 bg-cyan-500/20 text-cyan-400 text-[10px] rounded-full font-black uppercase tracking-widest border border-cyan-500/30">CLIENT_SPEC</div>
-                </div>
-
-                <div className="relative flex justify-center mb-12">
-                  <div className="w-40 h-40 bg-gradient-to-tr from-slate-800 to-slate-900 rounded-full border border-white/5 flex items-center justify-center relative">
-                    <motion.div 
-                      animate={{ 
-                        scale: [1, 1.1, 1],
-                        rotate: [0, 5, -5, 0]
-                      }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className="w-24 h-24 bg-gradient-to-tr from-cyan-400 to-fuchsia-500 rounded-[28px] shadow-2xl shadow-cyan-500/40 relative z-10"
-                    ></motion.div>
-                    <div className="absolute inset-0 border-2 border-dashed border-white/10 rounded-full animate-spin-slow"></div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {[1, 2].map(item => (
-                    <div key={item} className="p-5 bg-white/5 rounded-[24px] border border-white/5 flex items-center justify-between group/item hover:bg-white/10 transition-colors">
-                      <div className="flex items-center gap-4">
-                        <div className="w-1.5 h-1.5 rounded-full bg-fuchsia-500 shadow-lg shadow-fuchsia-500/50"></div>
-                        <div className="text-[10px] text-white/60 font-mono tracking-widest uppercase">
-                          {item === 1 ? 'INTERACTION_LOGIC_SYNC' : 'EMOTION_CHIP_V4'}
-                        </div>
-                      </div>
-                      <Sparkles className="w-3 h-3 text-slate-600 group-hover/item:text-cyan-400" />
+                  
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="relative">
+                      <div className={`absolute inset-0 ${item.color} blur-[30px] opacity-20`}></div>
+                      <motion.div 
+                        animate={item.anim}
+                        transition={item.transition}
+                        className={`w-12 h-12 ${item.color} rounded-2xl shadow-lg relative z-10`}
+                      ></motion.div>
                     </div>
-                  ))}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <div className="h-1 bg-white/5 rounded-full w-full"></div>
+                    <div className="h-1 bg-white/5 rounded-full w-2/3"></div>
+                  </div>
                 </div>
-                
-                <button className="w-full mt-10 bg-white text-black py-5 rounded-3xl font-black uppercase text-xs tracking-[0.2em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-white/5">
+              ))}
+              
+              <div className="col-span-2 mt-2">
+                <button className="w-full bg-white text-black py-5 rounded-3xl font-black uppercase text-xs tracking-[0.2em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-white/5">
                   {t.skills.deploy}
                 </button>
               </div>
